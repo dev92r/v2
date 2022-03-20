@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+declare let $: any;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +9,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'portfolio';
+
+  ngOnInit(): void {
+    (function () {
+      $(".hamburger-wrapper").on("click", function () {
+        $(".hamburger-menu").toggleClass("animate");
+        $('.hamburger-wrapper').toggleClass("bg");
+        $('.menu-item').toggleClass("slidein");
+      });
+    })();
+  }
 }

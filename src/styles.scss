@@ -1,1 +1,360 @@
 /* You can add global styles to this file, and also import other style files */
+@import '../node_modules/font-awesome/scss/font-awesome.scss';
+$bar-width: 40px;
+$bar-height: 8px;
+$bar-spacing: 9px;
+$bar-mb-width: 20px;
+$bar-mb-height: 3px;
+$bar-mb-spacing: 5px;
+$smallerPhone: 330px;
+$smallPhone: 360px;
+$mobile: 480px;
+$mid600: 600px;
+$tablet: 768px;
+$bigTablet: 900px;
+$desktop: 1024px;
+$bigDesktop: 1200px;
+
+@mixin small330 {
+    @media (max-width: #{$smallerPhone}) {
+        @content;
+    }
+}
+@mixin small360 {
+    @media (max-width: #{$smallPhone}) {
+        @content;
+    }
+}
+@mixin mobile {
+    @media (max-width: #{$mobile}) {
+        @content;
+    }
+}
+@mixin mid600 {
+    @media (max-width: #{$mid600}) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media (max-width: #{$tablet}) {
+        @content;
+    }
+}
+@mixin big900 {
+    @media (max-width: #{$bigTablet}) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (max-width: #{$desktop}) {
+        @content;
+    }
+}
+@mixin big1200 {
+    @media (max-width: #{$bigDesktop}) {
+        @content;
+    }
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	  background-size: 400% 400%;
+	  animation: gradient 15s ease infinite;
+	  height: 100vh;
+    font-family: 'Lato', sans-serif;
+  }
+  canvas {
+    display: block;
+  }
+
+  h1 {
+    font-size: 3em;
+    color: white;
+    font-weight: 300;
+    letter-spacing: 2px;
+    @include mobile {
+      font-size: 2em;
+    }
+  }
+  p{
+    font-size: 20px;
+    color: white;
+    font-weight: 200;
+    line-height: 1.6;
+  }
+  /* ---- HOME ---- */
+  .home {
+    position: absolute;
+    top:30%;
+    left:135px;
+    width: 40%;
+    @include big1200 {
+      width: 50%;
+    }
+    
+    @include big900 {
+      top:50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 80%;
+    }
+    @include mobile() {
+      width: 90%;
+    }
+  }
+  .hash {
+    opacity: 0.6;
+  }
+  .home_button {
+    display: flex;
+    .button:nth-child(1) {
+        margin-left: 0px;
+    }
+    .button:nth-child(2) {
+      margin-right: 0px;
+  }
+  }
+  /* ---- BUTTONS ---- */
+  .button {
+    position: relative;
+    background-color: transparent;
+    font-size: 1em;
+    color: rgba(238, 232, 255, 1);
+    overflow: visible;
+    border: 1px solid rgba(238, 232, 255, 0.57);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 300;
+    text-align: center;
+    letter-spacing: 2px;
+    padding: 14px 24px;
+    text-decoration: none;
+    margin: 20px;
+    @include big900 {
+      font-size: 0.75em;
+    }
+    @include mobile {
+      padding: 10px 14px;
+      margin: 10px;
+      width: 100%;
+    }
+}
+.button::before {
+    content: "";
+    position: absolute;
+    left: -15px;
+    top: 23px;
+    bottom: 0;
+    width: 30px;
+    height: 1px;
+    background-color: rgba(238, 232, 255, 0.57);
+    transition: left 0.3s ease, opacity 0.3s ease;
+    z-index: -1;
+    @include mobile {
+      display: none;
+    }
+}
+.button:hover, .button:focus {
+    background-color: rgb(238, 232, 255);
+    color: rgba(0,0,0,0.7)
+}
+.button:hover::before, .button:focus::before  {
+    left:0px;
+    opacity:0;
+}
+ 
+/* ---- Navigation ---- */
+.menu-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: auto;
+  cursor: pointer;
+  transition: all 300ms;
+  z-index: 1;
+}
+.hamburger-wrapper {
+  padding: 50px;
+  @include tablet {
+    padding: 40px;
+  }
+  position: relative;
+  transition: background-color 300ms;
+  z-index: 2;
+}
+.hamburger-wrapper.bg {
+  background-color: rgba(255,255,255,0.5);
+}
+.hamburger-wrapper:hover {
+  background-color: rgba(255,255,255,0.5);
+}
+.menu-item.slidein {
+  transform: translate3d(0px, 0px, 0px);
+  transition: transform 400ms;
+}
+.menu-item {
+  text-align: center;
+  overflow-y: auto;
+  background-color: rgba(255,255,255,0.7);
+  height: auto;
+  transform: translate3d(0px, -520px, 0px);
+  transition: transform 400ms;
+  z-index: -2;
+
+  &-link {
+    padding: 10px 0px;
+    display: block;
+    margin: 20px 10px;
+    @include tablet {
+      margin: 10px 10px;
+    }
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.1);
+    text-align: center;
+    background: linear-gradient(
+      to right,
+      #ee7752 0%,
+      #e73c7e 16%,
+      #23a6d5 32%,
+      #23d5ab 48%,
+      #ee7752 64%,
+      #e73c7e 80%,
+      #23a6d5 100%
+    );
+    background-size: 300% 300%;
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-color: #222;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    animation: shimmer infinite 3s linear;
+    position: relative;
+    
+    #home {
+      font-size: 36px;
+      @include tablet {
+        font-size: 24px;
+      }
+    }
+    #work {
+      font-size: 32px;
+      @include tablet {
+        font-size: 22px;
+      }
+    }
+    #profile {
+      font-size: 35px;
+      @include tablet {
+        font-size: 24px;
+      }
+    }
+    #skills {
+      font-size: 35px;
+      @include tablet {
+        font-size: 24px;
+      }
+    }
+    #mail {
+      font-size: 32px;
+      @include tablet {
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+.hamburger-menu,
+.hamburger-menu:after,
+.hamburger-menu:before {
+  width: $bar-width;
+  height: $bar-height;
+  @include tablet {
+    width: $bar-mb-width;
+    height: $bar-mb-height;
+  }
+  border-radius: 2px;
+  opacity: 0.8;
+}
+
+.hamburger-menu {
+  position: absolute;
+  left: 52%;
+  top:50%;
+  transform: translate(-50%,-50%);
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0ms 300ms;
+  &.animate {
+    background: rgba(255, 255, 255, 0);
+  }
+}
+
+.hamburger-menu:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: $bar-spacing;
+  @include tablet {
+    bottom: $bar-mb-spacing;
+  }
+  background: rgba(255, 255, 255, 1);
+  transition: bottom 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hamburger-menu:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: $bar-spacing;
+  @include tablet {
+    top: $bar-mb-spacing;
+  }
+  background: rgba(255, 255, 255, 1);
+  transition: top 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hamburger-menu.animate:after {
+  top: 0;
+  transform: rotate(45deg);
+  transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hamburger-menu.animate:before {
+  bottom: 0;
+  transform: rotate(-45deg);
+  transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ---- particles.js container ---- */
+  #particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+/* ---- Animations ---- */
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: top left;
+    }
+    100% {
+      background-position: top right;
+    }
+  }
+  
