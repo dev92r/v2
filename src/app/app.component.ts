@@ -12,7 +12,7 @@ export class AppComponent {
 
   ngOnInit(): void {
     (function () {
-      $(".hamburger-wrapper").on("click", function () {
+      $(".menu-wrapper").on("click", function () {
         $(".hamburger-menu").toggleClass("animate");
         $('.hamburger-wrapper').toggleClass("bg");
         $('.menu-item').toggleClass("slidein");

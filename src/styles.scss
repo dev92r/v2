@@ -88,7 +88,7 @@ body {
     position: absolute;
     top:30%;
     left:135px;
-    width: 40%;
+    width: 45%;
     @include big1200 {
       width: 50%;
     }
@@ -99,7 +99,7 @@ body {
       transform: translate(-50%,-50%);
       width: 80%;
     }
-    @include mobile() {
+    @include mobile {
       width: 90%;
     }
   }
@@ -115,6 +115,103 @@ body {
       margin-right: 0px;
   }
   }
+  /* ---- Profile ---- */
+  .page {
+    position: absolute;
+    width: 75%;
+    top: 15%;
+    left: 135px;
+    height: 100%;
+    @include big900 {
+      top:50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 80%;
+      padding: 60px 0px;
+      margin: 50px 0px;
+      
+    }
+    @include mobile {
+      width: 90%;
+    }
+    &-content {
+        &-heading {
+            font-size: 2em;
+            color: white;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+        &-text {
+          &-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+          }
+          &-link:hover {
+            cursor: pointer;
+          }
+        }
+    }
+    &-buttons {
+      padding-top: 30px;
+      .button {
+        margin-left: 0px;
+      }
+    }
+}
+  /* ---- Skills ---- */
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    @include tablet {
+      // flex-direction: column;
+    }
+    background-color: rgba(255,255,255,0.1);
+    padding: 20px 10px;
+    margin-bottom: 20px;
+    &-set {
+        margin: 0px 0px 0px 40px;
+        @include big1200 {
+          margin: 0px 0px 0px 20px;
+          width: 46%;
+        }
+        &-heading {
+            font-size: 1.25em;
+            color: rgba(255,255,255,1);
+            font-weight: 300;
+            letter-spacing: 1px;
+            position: relative;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        &-heading::before {
+            content: "";
+            position: absolute;
+            background-color: rgba(255,255,255,0.5);
+            width: 26px;
+            height: 2px;
+            bottom: -10px;
+            left: 2px;
+        }
+        &-text {
+            font-size: 17px;
+            color: white;
+            font-weight: 300;
+            line-height: 1.1;
+            padding-left: 50px;
+            position: relative;
+        }
+        &-text::before {
+            content: "";
+            position: absolute;
+            background-color: rgba(255,255,255,0.6);
+            width: 10px;
+            height: 2px;
+            bottom: 8px;
+            left: 30px;
+        }
+    }   
+}
   /* ---- BUTTONS ---- */
   .button {
     position: relative;
@@ -195,7 +292,6 @@ body {
 }
 .menu-item {
   text-align: center;
-  overflow-y: auto;
   background-color: rgba(255,255,255,0.7);
   height: auto;
   transform: translate3d(0px, -520px, 0px);
@@ -203,12 +299,8 @@ body {
   z-index: -2;
 
   &-link {
-    padding: 10px 0px;
+    padding-top: 30px;
     display: block;
-    margin: 20px 10px;
-    @include tablet {
-      margin: 10px 10px;
-    }
     text-decoration: none;
     color: rgba(255, 255, 255, 0.1);
     text-align: center;
@@ -233,35 +325,77 @@ body {
     position: relative;
     
     #home {
-      font-size: 36px;
+      font-size: 30px;
       @include tablet {
         font-size: 24px;
       }
     }
     #work {
-      font-size: 32px;
+      font-size: 27px;
       @include tablet {
         font-size: 22px;
       }
     }
     #profile {
-      font-size: 35px;
+      font-size: 30px;
       @include tablet {
         font-size: 24px;
       }
     }
     #skills {
-      font-size: 35px;
+      font-size: 30px;
       @include tablet {
         font-size: 24px;
       }
     }
     #mail {
-      font-size: 32px;
+      font-size: 27px;
       @include tablet {
         font-size: 22px;
       }
     }
+  }
+  &-link:last-child {
+    padding-bottom: 30px;
+  }
+  
+  &-link::before {
+    position: absolute;
+    color: white;
+    padding: 10px 20px;
+    left: -110px;
+    top: 26px;
+    @include tablet {
+      top: 21px;
+    }
+    font-weight: 300;
+    opacity: 0;
+    transition: opacity 300ms ease-out;
+    width: 80px;
+  }
+  &-link:hover::before {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+    @include mobile {
+      opacity: 0;
+    }
+  }
+  &-link:nth-child(1)::before {
+    content: "HOME";
+  }
+  &-link:nth-child(2)::before {
+    content: "WORK";
+  }
+  &-link:nth-child(3)::before {
+    content: "PROFILE";
+    left: -115px;
+  }
+  &-link:nth-child(4)::before {
+    content: "SKILLS";
+  }
+  &-link:nth-child(5)::before {
+    content: "CONTACT";
+    left: -122px;
   }
 }
 
