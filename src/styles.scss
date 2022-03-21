@@ -63,6 +63,7 @@ body {
 	  animation: gradient 15s ease infinite;
 	  height: 100vh;
     font-family: 'Lato', sans-serif;
+    scroll-behavior: smooth;
   }
   canvas {
     display: block;
@@ -121,18 +122,17 @@ body {
     width: 75%;
     top: 15%;
     left: 135px;
-    height: 100%;
+    height: auto;
     @include big900 {
-      top:50%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-      width: 80%;
-      padding: 60px 0px;
-      margin: 50px 0px;
-      
+    top: 0%;
+    left: 30px;
+    width: 80%;
+    padding: 60px 0px;
+    margin: 50px 0px;
     }
     @include mobile {
       width: 90%;
+      left: 20px;
     }
     &-content {
         &-heading {
@@ -154,6 +154,7 @@ body {
     }
     &-buttons {
       padding-top: 30px;
+      padding-bottom: 70px;
       .button {
         margin-left: 0px;
       }
@@ -163,17 +164,23 @@ body {
   .skills {
     display: flex;
     flex-wrap: wrap;
-    @include tablet {
-      // flex-direction: column;
-    }
     background-color: rgba(255,255,255,0.1);
     padding: 20px 10px;
     margin-bottom: 20px;
+    @include mobile {
+      background-color: rgba(255,255,255,0);
+      flex-direction: column;
+      padding: 20px 10px;
+      margin-bottom: 0px;
+    }
     &-set {
         margin: 0px 0px 0px 40px;
         @include big1200 {
           margin: 0px 0px 0px 20px;
           width: 46%;
+        }
+        @include mobile {
+          margin: 0px;
         }
         &-heading {
             font-size: 1.25em;
