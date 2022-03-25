@@ -14,6 +14,7 @@ $tablet: 768px;
 $bigTablet: 900px;
 $desktop: 1024px;
 $bigDesktop: 1200px;
+$biggerDesktop: 1440px;
 
 @mixin small330 {
     @media (max-width: #{$smallerPhone}) {
@@ -55,11 +56,16 @@ $bigDesktop: 1200px;
         @content;
     }
 }
+@mixin biger1440 {
+  @media (max-width: #{$biggerDesktop}) {
+      @content;
+  }
+}
 
 body {
     margin: 0;
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	  background-size: 400% 400%;
+	  background-size: 500% 500%;
 	  animation: gradient 15s ease infinite;
 	  height: 100vh;
     font-family: 'Lato', sans-serif;
@@ -93,7 +99,6 @@ body {
     @include big1200 {
       width: 50%;
     }
-    
     @include big900 {
       top:50%;
       left: 50%;
@@ -118,21 +123,15 @@ body {
   }
   /* ---- Profile ---- */
   .page {
-    position: absolute;
-    width: 75%;
-    top: 15%;
-    left: 135px;
-    height: auto;
+      position: relative;
+      width: 75%;
+      left: 135px;
+      padding-top: 100px;
+      height: auto;
     @include big900 {
-    top: 0%;
-    left: 30px;
-    width: 80%;
-    padding: 60px 0px;
-    margin: 50px 0px;
-    }
-    @include mobile {
+      left: 0px;
       width: 90%;
-      left: 20px;
+      margin: auto;
     }
     &-content {
         &-heading {
@@ -219,6 +218,116 @@ body {
         }
     }   
 }
+  /* ---- Work ---- */
+  .work {
+    padding-top: 100px;
+    &-heading {
+        font-size: 2em;
+        color: white;
+        font-weight: 400;
+        letter-spacing: 2px;
+        margin-left: 135px;
+        @include big900 {
+          padding-bottom: 30px;
+          width: 90%;
+          margin: auto;
+        }
+    }
+    &-row{
+        position: relative;
+        border-top: 1px solid rgba(255,255,255,0.4);
+        padding: 20px 0px;
+        margin: 0px 20px;
+        @include big900 {
+          padding: 10px 0px;
+          width: 90%;
+          margin: auto;
+        }
+        transition: background-color 300ms ease-out;
+        &-title {
+            position: relative;
+            font-size: 20px;
+            color: white;
+            font-weight: 300;
+            line-height: 1.6;
+            text-decoration: none;
+            display: block;
+            padding: 20px 0px 20px 115px;
+            @include big900 {
+              padding: 20px 0px;
+              margin: auto;
+            }
+        } 
+    } 
+    &-row:last-child {
+        border-bottom: 1px solid rgba(255,255,255,0.4);
+    }   
+    &-row:hover {
+        background-color: rgba(255,255,255,0.8);
+        transition: background-color 300ms ease-in;   
+        @include big900 {
+          background-color: transparent;
+        }
+    }
+}
+.work-row:hover .work-row-title {
+    color: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(
+      to right,
+      #ee7752 0%,
+      #e73c7e 16%,
+      #23a6d5 32%,
+      #23d5ab 48%,
+      #ee7752 64%,
+      #e73c7e 80%,
+      #23a6d5 100%
+    );
+    background-size: 300% 300%;
+    text-decoration: none;
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-color: #222;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    animation: shimmer infinite 3s linear;
+    position: relative;
+    @include big900 {
+      color: white;
+    }
+}
+.arrow {
+    float: right;
+    margin-top: 5px;
+    margin-right: 40px;
+    color: transparent;
+    @include big900 {
+      opacity: 0;
+    }
+}
+.work-row:hover .work-row-title.arrow {
+    color: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(
+      to right,
+      #ee7752 0%,
+      #e73c7e 16%,
+      #23a6d5 32%,
+      #23d5ab 48%,
+      #ee7752 64%,
+      #e73c7e 80%,
+      #23a6d5 100%
+    );
+    background-size: 300% 300%;
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-color: #222;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    animation: shimmer infinite 3s linear;
+    position: relative;
+    transition: all 300ms ease-in;
+}
   /* ---- BUTTONS ---- */
   .button {
     position: relative;
@@ -274,7 +383,6 @@ body {
   top: 0;
   right: 0;
   margin: auto;
-  cursor: pointer;
   transition: all 300ms;
   z-index: 1;
 }
@@ -292,6 +400,7 @@ body {
 }
 .hamburger-wrapper:hover {
   background-color: rgba(255,255,255,0.5);
+  cursor: pointer;
 }
 .menu-item.slidein {
   transform: translate3d(0px, 0px, 0px);
@@ -383,6 +492,9 @@ body {
   &-link:hover::before {
     opacity: 1;
     transition: opacity 300ms ease-in;
+    @include tablet {
+      opacity: 0;
+    }
     @include mobile {
       opacity: 0;
     }
